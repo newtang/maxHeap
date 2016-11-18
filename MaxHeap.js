@@ -1,7 +1,3 @@
-/**
-  * Max MaxHeap
- */
-
 function MaxHeap(){
 	this._arr = [];
 }
@@ -15,22 +11,22 @@ MaxHeap.prototype.pop = function(){
 	var val = this._arr[0],
 		lastIndex = this._arr.length - 1;
 
-	//remove the last item, and place it at the top.
+	//remove the last item, and place it at the top. Then siftDown
 	//this._arr[0] = this.arr.pop();
 	this._arr[0] = this._arr.splice(lastIndex,1)[0];
-
 	this._siftDown(0);
-
 	return val;
 };
 
 MaxHeap.prototype.insert = function(num){
+	//add to the end of the array, then siftUp
 	this._arr.push(num);
 	this._siftUp(this._arr.length-1);
 };
 
 /***************** helpers! *****************/
 
+//siftUp is used after an element is inserted.
 MaxHeap.prototype._siftUp = function(index){
 	var currValue = this._arr[index],
 		parentIndex = this._getParentIndex(index),
@@ -43,6 +39,7 @@ MaxHeap.prototype._siftUp = function(index){
 	
 };
 
+//siftDown is used when an element is popped.
 MaxHeap.prototype._siftDown = function(index){
 	var currValue = this._arr[index],
 		leftChildIndex = this._getLeftChildIndex(index),
